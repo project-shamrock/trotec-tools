@@ -1,0 +1,2157 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Trotec.ProductionCenter.WebAPI (1.0-OpenApi)",
+        "description": "API description for Trotec Ruby",
+        "termsOfService": "https://www.troteclaser.com/",
+        "contact": {
+            "name": "TROTEC Laser GmbH",
+            "url": "https://www.troteclaser.com/",
+            "email": "software@troteclaser.com"
+        },
+        "license": {
+            "name": "",
+            "url": "https://www.troteclaser.com/"
+        },
+        "version": "1.0-OpenApi"
+    },
+    "paths": {
+        "/api/OpenApi/Upload": {
+            "post": {
+                "tags": [
+                    "OpenApi"
+                ],
+                "operationId": "upload",
+                "parameters": [
+                    {
+                        "name": "importProfileId",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "trackingNumber",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string",
+                            "default": "1.0-OpenApi"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "uploadedFile": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            },
+                            "encoding": {
+                                "uploadedFile": {
+                                    "style": "form"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2-openapi": []
+                    },
+                    {
+                        "oauth2": []
+                    }
+                ]
+            }
+        },
+        "/api/OpenApi/UploadFromMany": {
+            "post": {
+                "tags": [
+                    "OpenApi"
+                ],
+                "operationId": "uploadFromMany",
+                "parameters": [
+                    {
+                        "name": "importProfileId",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "trackingNumber",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string",
+                            "default": "1.0-OpenApi"
+                        }
+                    },
+                    {
+                        "name": "x-target-device",
+                        "in": "header",
+                        "description": "Targeted device path",
+                        "schema": {
+                            "type": "string",
+                            "format": "{WebAPI public Id}?/{Device serial No}"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "uploadedFiles": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    }
+                                }
+                            },
+                            "encoding": {
+                                "uploadedFiles": {
+                                    "style": "form"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2-openapi": []
+                    },
+                    {
+                        "oauth2": []
+                    }
+                ]
+            }
+        },
+        "/api/OpenApi/UploadFromDesign": {
+            "post": {
+                "tags": [
+                    "OpenApi"
+                ],
+                "operationId": "uploadFromDesign",
+                "parameters": [
+                    {
+                        "name": "designId",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "importProfileId",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "trackingNumber",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string",
+                            "default": "1.0-OpenApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2-openapi": []
+                    },
+                    {
+                        "oauth2": []
+                    }
+                ]
+            }
+        },
+        "/api/OpenApi/UploadFromManyDesigns": {
+            "post": {
+                "tags": [
+                    "OpenApi"
+                ],
+                "operationId": "uploadFromManyDesigns",
+                "parameters": [
+                    {
+                        "name": "importProfileId",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "trackingNumber",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string",
+                            "default": "1.0-OpenApi"
+                        }
+                    },
+                    {
+                        "name": "x-target-device",
+                        "in": "header",
+                        "description": "Targeted device path",
+                        "schema": {
+                            "type": "string",
+                            "format": "{WebAPI public Id}?/{Device serial No}"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "format": "uuid"
+                                }
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "format": "uuid"
+                                }
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "format": "uuid"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2-openapi": []
+                    },
+                    {
+                        "oauth2": []
+                    }
+                ]
+            }
+        },
+        "/api/OpenApi/EnqueueWorkbench": {
+            "post": {
+                "tags": [
+                    "OpenApi"
+                ],
+                "operationId": "enqueueWorkbench",
+                "parameters": [
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string",
+                            "default": "1.0-OpenApi"
+                        }
+                    },
+                    {
+                        "name": "x-target-device",
+                        "in": "header",
+                        "description": "Targeted device path",
+                        "schema": {
+                            "type": "string",
+                            "format": "{WebAPI public Id}?/{Device serial No}"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "format": "uuid"
+                                }
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "format": "uuid"
+                                }
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "format": "uuid"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2-openapi": []
+                    },
+                    {
+                        "oauth2": []
+                    }
+                ]
+            }
+        },
+        "/api/OpenApi/GetDesigns": {
+            "get": {
+                "tags": [
+                    "OpenApi"
+                ],
+                "operationId": "getDesigns",
+                "parameters": [
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string",
+                            "default": "1.0-OpenApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BasicElementInfo"
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BasicElementInfo"
+                                    }
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BasicElementInfo"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2-openapi": []
+                    },
+                    {
+                        "oauth2": []
+                    }
+                ]
+            }
+        },
+        "/api/OpenApi/GetWorkbenches": {
+            "get": {
+                "tags": [
+                    "OpenApi"
+                ],
+                "operationId": "getWorkbenches",
+                "parameters": [
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string",
+                            "default": "1.0-OpenApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BasicElementInfo"
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BasicElementInfo"
+                                    }
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BasicElementInfo"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2-openapi": []
+                    },
+                    {
+                        "oauth2": []
+                    }
+                ]
+            }
+        },
+        "/api/OpenApi/GetQueueElements": {
+            "get": {
+                "tags": [
+                    "OpenApi"
+                ],
+                "operationId": "getQueueElements",
+                "parameters": [
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string",
+                            "default": "1.0-OpenApi"
+                        }
+                    },
+                    {
+                        "name": "x-target-device",
+                        "in": "header",
+                        "description": "Targeted device path",
+                        "schema": {
+                            "type": "string",
+                            "format": "{WebAPI public Id}?/{Device serial No}"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/QueueElementInfo"
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/QueueElementInfo"
+                                    }
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/QueueElementInfo"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2-openapi": []
+                    },
+                    {
+                        "oauth2": []
+                    }
+                ]
+            }
+        },
+        "/api/OpenApi/DeleteAllItems": {
+            "delete": {
+                "tags": [
+                    "OpenApi"
+                ],
+                "operationId": "deleteAllItems",
+                "parameters": [
+                    {
+                        "name": "trackingNumber",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string",
+                            "default": "1.0-OpenApi"
+                        }
+                    },
+                    {
+                        "name": "x-target-device",
+                        "in": "header",
+                        "description": "Targeted device path",
+                        "schema": {
+                            "type": "string",
+                            "format": "{WebAPI public Id}?/{Device serial No}"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2-openapi": []
+                    },
+                    {
+                        "oauth2": []
+                    }
+                ]
+            }
+        },
+        "/api/OpenApi/DeleteDesign": {
+            "delete": {
+                "tags": [
+                    "OpenApi"
+                ],
+                "operationId": "deleteDesign",
+                "parameters": [
+                    {
+                        "name": "designId",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "permanent",
+                        "in": "query",
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string",
+                            "default": "1.0-OpenApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2-openapi": []
+                    },
+                    {
+                        "oauth2": []
+                    }
+                ]
+            }
+        },
+        "/api/OpenApi/DeleteWorkbench": {
+            "delete": {
+                "tags": [
+                    "OpenApi"
+                ],
+                "operationId": "deleteWorkbench",
+                "parameters": [
+                    {
+                        "name": "workbenchId",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "permanent",
+                        "in": "query",
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string",
+                            "default": "1.0-OpenApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2-openapi": []
+                    },
+                    {
+                        "oauth2": []
+                    }
+                ]
+            }
+        },
+        "/api/OpenApi/DeleteQueueElement": {
+            "delete": {
+                "tags": [
+                    "OpenApi"
+                ],
+                "operationId": "deleteQueueElement",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string",
+                            "default": "1.0-OpenApi"
+                        }
+                    },
+                    {
+                        "name": "x-target-device",
+                        "in": "header",
+                        "description": "Targeted device path",
+                        "schema": {
+                            "type": "string",
+                            "format": "{WebAPI public Id}?/{Device serial No}"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Nothing"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2-openapi": []
+                    },
+                    {
+                        "oauth2": []
+                    }
+                ]
+            }
+        },
+        "/api/OpenApi/GetDeviceStatus": {
+            "get": {
+                "tags": [
+                    "OpenApi"
+                ],
+                "operationId": "getDeviceStatus",
+                "parameters": [
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string",
+                            "default": "1.0-OpenApi"
+                        }
+                    },
+                    {
+                        "name": "x-target-device",
+                        "in": "header",
+                        "description": "Targeted device path",
+                        "schema": {
+                            "type": "string",
+                            "format": "{WebAPI public Id}?/{Device serial No}"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeviceStatus"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeviceStatus"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeviceStatus"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2-openapi": []
+                    },
+                    {
+                        "oauth2": []
+                    }
+                ]
+            }
+        },
+        "/api/OpenApi/GetJobsStatus": {
+            "get": {
+                "tags": [
+                    "OpenApi"
+                ],
+                "operationId": "getJobsStatus",
+                "parameters": [
+                    {
+                        "name": "trackingNumber",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string",
+                            "default": "1.0-OpenApi"
+                        }
+                    },
+                    {
+                        "name": "x-target-device",
+                        "in": "header",
+                        "description": "Targeted device path",
+                        "schema": {
+                            "type": "string",
+                            "format": "{WebAPI public Id}?/{Device serial No}"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/QueueElementInfo"
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/QueueElementInfo"
+                                    }
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/QueueElementInfo"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2-openapi": []
+                    },
+                    {
+                        "oauth2": []
+                    }
+                ]
+            }
+        },
+        "/api/OpenApi/GetImportProfiles": {
+            "get": {
+                "tags": [
+                    "OpenApi"
+                ],
+                "operationId": "getImportProfiles",
+                "parameters": [
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string",
+                            "default": "1.0-OpenApi"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ImportProfileName"
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ImportProfileName"
+                                    }
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ImportProfileName"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2-openapi": []
+                    },
+                    {
+                        "oauth2": []
+                    }
+                ]
+            }
+        },
+        "/api/OpenApi/GetTableCameraStream": {
+            "get": {
+                "tags": [
+                    "OpenApi"
+                ],
+                "operationId": "getTableCameraStream",
+                "parameters": [
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string",
+                            "default": "1.0-OpenApi"
+                        }
+                    },
+                    {
+                        "name": "x-target-device",
+                        "in": "header",
+                        "description": "Targeted device path",
+                        "schema": {
+                            "type": "string",
+                            "format": "{WebAPI public Id}?/{Device serial No}"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "image/jpeg": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PushStreamResult"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "image/jpeg": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "image/jpeg": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2-openapi": []
+                    },
+                    {
+                        "oauth2": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ApiError": {
+                "required": [
+                    "code"
+                ],
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string"
+                    },
+                    "additionalInfo": {
+                        "type": "string",
+                        "nullable": true,
+                        "readOnly": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "BasicElementInfo": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "trackingNumber": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "DeviceIssueInfo": {
+                "required": [
+                    "active",
+                    "code",
+                    "id",
+                    "lastOccurence",
+                    "severity"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "code": {
+                        "type": "string"
+                    },
+                    "extraInfo": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "severity": {
+                        "$ref": "#/components/schemas/DeviceIssueSeverityEnum"
+                    },
+                    "lastOccurence": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "DeviceIssueSeverityEnum": {
+                "enum": [
+                    "Informational",
+                    "Pause",
+                    "Stop",
+                    "Abort"
+                ],
+                "type": "string"
+            },
+            "DeviceStateInfo": {
+                "type": "object",
+                "properties": {
+                    "serialNo": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "attachedRotary": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isConnected": {
+                        "type": "boolean"
+                    },
+                    "status": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "resumeRequired": {
+                        "type": "boolean"
+                    },
+                    "model": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "DeviceStatus": {
+                "type": "object",
+                "properties": {
+                    "serialNo": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "attachedRotary": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "model": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "jobName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "progress": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "remainingTime": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "issues": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DeviceIssueInfo"
+                        },
+                        "nullable": true
+                    },
+                    "error": {
+                        "$ref": "#/components/schemas/ApiError"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ImportProfileName": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "materialName": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "JobQueueEntryInfo": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "materialName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "materialDescription": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "jobName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "enqueuedBy": {
+                        "type": "string",
+                        "format": "uuid",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "JobQueueEntryStateInfo": {
+                "type": "object",
+                "properties": {
+                    "serialNo": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "jobQueueEntryInfo": {
+                        "$ref": "#/components/schemas/JobQueueEntryInfo"
+                    },
+                    "elapsedTime": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "error": {
+                        "$ref": "#/components/schemas/PublicApiError"
+                    },
+                    "progress": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "trackingNumbers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "JobQueueEntryStatusEnum": {
+                "enum": [
+                    "Initial",
+                    "Preprocessing",
+                    "DevicePreprocessing",
+                    "Waiting",
+                    "Ready",
+                    "Running",
+                    "DevicePostprocessing",
+                    "Finished",
+                    "Erroneous",
+                    "Removed"
+                ],
+                "type": "string"
+            },
+            "JobQueueInfo": {
+                "type": "object",
+                "properties": {
+                    "deviceSn": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "useAnchor": {
+                        "type": "boolean"
+                    },
+                    "order": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Nothing": {
+                "type": "object",
+                "additionalProperties": false
+            },
+            "PublicApiError": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "additionalInfo": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "PushStreamResult": {
+                "type": "object",
+                "additionalProperties": false
+            },
+            "QueueElementInfo": {
+                "type": "object",
+                "properties": {
+                    "isReady": {
+                        "type": "boolean"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/JobQueueEntryStatusEnum"
+                    },
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "trackingNumber": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "securitySchemes": {
+            "oauth2-openapi": {
+                "type": "apiKey",
+                "description": "Standard Authorization header using the Bearer scheme. Example: \"PersonalAccessToken {token}\"",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "security": [
+        {
+            "oauth2-openapi": []
+        }
+    ],
+    "tags": [
+        {
+            "name": "OpenApi",
+            "description": "\r\n                                            This API includes real-time event notifications using SignalR.\r\n                                            Clients can subscribe to the following SignalR channels:\r\n\r\n                                            - **DeviceStateInfo**: Receives real-time device state updates.\r\n                                            - **QueueInfo**: Notifies about job queue changes.\r\n                                            - **JobQueueEntryStateInfo**: Sends updates when a job enters the queue.\r\n\r\n                                             SignalR Hub URL: {example}/publicTrotecNotification\r\n                                             Public Trotec Notification schemas (available below in the schemas section)\r\n                                             - DeviceStateInfo\r\n                                             - JobQueueEntryInfo\r\n                                             - JobQueueEntryStateInfo\r\n                                             - JobQueueInfo\r\n                                             - PublicApiError"
+        }
+    ]
+}

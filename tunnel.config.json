@@ -1,0 +1,15 @@
+{
+  "host": "trotec",
+  "tunnels": {
+    "ruby-laser": {
+      "description": "Trotec Ruby laser web UI (HTTPS)",
+      "localPort": 2402,
+      "remotePort": 2402
+    },
+    "ruby-api": {
+      "description": "Trotec Ruby OpenAPI / Swagger (HTTPS)",
+      "localPort": 5001,
+      "remotePort": 5001
+    }
+  }
+}
