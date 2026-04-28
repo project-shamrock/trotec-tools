@@ -1,18 +1,104 @@
-# trotec-tunnel
+# trotec-tools
 
-A tunneling service that exposes a Trotec Q400 RF laser (serial `Q42-3066`) connected to a remote Windows host over the network via SSH tunnels and the Trotec Ruby API.
+Tools for controlling a Trotec laser cutter via the Ruby API, designed to be driven by AI agents (Claude Code) over SSH tunnels.
+
+## What is this?
+
+Trotec's **Ruby** software runs on a Windows PC connected to the laser via USB. It exposes a rich REST API on localhost. This project provides:
+
+1. **SSH tunnel manager** — securely forward the Ruby API ports to your local machine
+2. **Python client library** — clean interface to the Ruby API for uploading designs, controlling the laser, and monitoring status
+3. **CLI tools** — bash and Python scripts for quick laser operations
+
+The goal is to let **Claude Code** (or any AI agent) pilot a Trotec laser: upload SVG cut files, manage the job queue, monitor device status, and control the machine — all through the API.
+
+## Supported Hardware
+
+Currently tested with:
+- **Trotec Q400** (RF-excited CO2 laser)
+- **Trotec Ruby** v2.11.1
+
+The Ruby API is common across Trotec's product line, so this should work with other models (Speedy, R-series, etc.) with minimal changes.
+
+## Quick Start
+
+### 1. Prerequisites
+
+- A Trotec laser with Ruby software running on a Windows PC
+- SSH access to the Windows PC ([OpenSSH for Windows](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse))
+- [uv](https://docs.astral.sh/uv/) for Python environment management
+
+### 2. Setup
+
+```bash
+git clone https://github.com/project-shamrock/trotec-tools.git
+cd trotec-tools
+
+# Configure credentials
+cp .env.example .env
+# Edit .env with your Ruby login and device info
+
+# Configure SSH (add to ~/.ssh/config)
+# Host trotec
+#   HostName <windows-ip>
+#   User <windows-user>
+#   IdentityFile ~/.ssh/trotec-tunnel
+
+# Install Python dependencies
+uv sync
+```
+
+### 3. Open Tunnels
+
+```bash
+./tunnel.sh up        # open all tunnels
+./tunnel.sh status    # verify they're running
+./tunnel.sh test      # test HTTPS connectivity
+```
+
+### 4. Use the Python Client
+
+```bash
+# Full status report
+uv run python ruby_client.py status
+
+# Upload a design
+uv run python ruby_client.py upload my-design.svg
+
+# Check designs and queue
+uv run python ruby_client.py designs
+uv run python ruby_client.py queue
+```
+
+### 5. Use as a Library
+
+```python
+from ruby_client import RubyClient
+
+client = RubyClient()
+client.sign_in()
+
+# Check laser status
+status = client.get_device_status()
+print(f"Laser is {status['status']}")
+
+# Upload and queue a job
+client.upload_file("cut-pattern.svg")
+designs = client.get_designs()
+# ... enqueue, run, monitor
+```
 
 ## Architecture
 
 ```
-[ Client (Mac) ] --SSH Tunnel--> [ Windows Host (MiniPC_103) ] --USB/COM3--> [ Trotec Q400 Laser ]
-                                  10.160.26.28
-                                  Ruby v2.11.1
+┌─────────────┐     SSH Tunnel      ┌──────────────────┐     USB      ┌─────────────┐
+│  Your Mac   │ ──────────────────> │  Windows PC      │ ──────────> │  Trotec     │
+│  Claude Code│    ports 2402,5001  │  Ruby v2.11.1    │    COM port  │  Laser      │
+│  Python     │                     │  (Kestrel/HTTPS) │              │             │
+└─────────────┘                     └──────────────────┘              └─────────────┘
 ```
 
-The Windows machine runs **Trotec Ruby** software (v2.11.1) which exposes several local services. We tunnel into them over SSH to control the laser remotely.
-
-## Services on the Windows Host
+## Ruby API Services
 
 | Port  | Protocol | Service                         |
 |-------|----------|---------------------------------|
@@ -21,42 +107,38 @@ The Windows machine runs **Trotec Ruby** software (v2.11.1) which exposes severa
 | 5016  | HTTPS    | Ruby Manager / TrayApp          |
 | 5043  | HTTPS    | Hot Status                      |
 | 27200 | HTTP     | JobManager                      |
-| 5000  | HTTP     | Certificate service             |
-| 46146 | HTTPS    | Auto-updater                    |
 
-## Quick Start
+## API Endpoints
 
-### 1. Open Tunnels
+### OpenAPI (documented)
 
-```bash
-./tunnel.sh up        # opens all configured tunnels
-./tunnel.sh status    # verify tunnels are running
-./tunnel.sh test      # test HTTPS connectivity
-```
+Swagger UI: `https://localhost:5001/swagger/index.html`
 
-### 2. Access the Laser
+| Method | Endpoint                | Description                    |
+|--------|-------------------------|--------------------------------|
+| POST   | /api/OpenApi/Upload     | Upload a design file           |
+| GET    | /api/OpenApi/GetDesigns | List designs                   |
+| GET    | /api/OpenApi/GetWorkbenches | List workbenches           |
+| POST   | /api/OpenApi/EnqueueWorkbench | Send to queue            |
+| GET    | /api/OpenApi/GetDeviceStatus | Laser status              |
+| GET    | /api/OpenApi/GetJobsStatus | Job progress                |
+| GET    | /api/OpenApi/GetQueueElements | Queue contents          |
+| GET    | /api/OpenApi/GetTableCameraStream | Live camera         |
 
-- **Ruby Web UI**: https://localhost:2402
-- **Swagger Docs**: https://localhost:5001/swagger/index.html
-- **API Base**: https://localhost:5001/api/OpenApi/
+### Internal API (undocumented, reverse-engineered)
 
-### 3. Authenticate
+| Method | Endpoint                           | Description              |
+|--------|------------------------------------|--------------------------|
+| POST   | /api/User/SignIn                   | Authenticate, get JWT    |
+| GET    | /api/Diagnostics/GetProcessesState | Service health           |
+| GET    | /api/Proxy/ListDevices             | Connected lasers         |
+| POST   | /api/Proxy/AddDevice               | Register a laser         |
+| PUT    | /api/Device/MoveZ                  | Move Z stage             |
+| POST   | /api/Queue/RunQueue                | Start cutting            |
+| POST   | /api/Queue/Stop                    | Emergency stop           |
+| GET    | /api/Camera/Frame                  | Camera snapshot          |
 
-```bash
-# Sign in to get a JWT token
-curl -sk https://localhost:5001/api/User/SignIn \
-  -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"email":"r.j.walters@gmail.com","password":"Shamrock1"}'
-```
-
-Use the returned `token` field as a Bearer token:
-
-```bash
-curl -sk https://localhost:5001/api/OpenApi/GetDeviceStatus \
-  -H "Authorization: Bearer <token>" \
-  -H "x-api-version: 1.0-OpenApi"
-```
+See `docs/swagger.json` for the full OpenAPI spec.
 
 ## Tunnel Management
 
@@ -64,98 +146,42 @@ curl -sk https://localhost:5001/api/OpenApi/GetDeviceStatus \
 ./tunnel.sh up [name]      # Open tunnel(s)
 ./tunnel.sh down [name]    # Close tunnel(s)
 ./tunnel.sh status         # Show tunnel status
-./tunnel.sh list           # List available tunnels
+./tunnel.sh list           # List configured tunnels
 ./tunnel.sh test           # Test HTTPS connectivity
-./tunnel.sh ssh            # Interactive SSH to Windows host
-./tunnel.sh exec <cmd>     # Run command on Windows host
+./tunnel.sh ssh            # Interactive SSH session
+./tunnel.sh exec <cmd>     # Run remote command
 ```
-
-Tunnels are defined in `tunnel.config.json`.
-
-## SSH Setup
-
-- SSH host alias: `trotec` (configured in `~/.ssh/config`)
-- Key: `~/.ssh/trotec-tunnel` (ed25519)
-- Windows user: `Shamrock@10.160.26.28`
-- OpenSSH for Windows on the host, key in `C:\ProgramData\ssh\administrators_authorized_keys`
-
-## API Endpoints (OpenAPI)
-
-Available at `https://localhost:5001/api/OpenApi/`:
-
-| Method | Endpoint                | Description                    |
-|--------|-------------------------|--------------------------------|
-| POST   | Upload                  | Upload a design file           |
-| POST   | UploadFromMany          | Upload multiple files          |
-| POST   | UploadFromDesign        | Upload from existing design    |
-| POST   | UploadFromManyDesigns   | Upload from multiple designs   |
-| POST   | EnqueueWorkbench        | Send workbench to queue        |
-| GET    | GetDesigns              | List designs                   |
-| GET    | GetWorkbenches          | List workbenches               |
-| GET    | GetQueueElements        | List queue entries             |
-| DELETE | DeleteAllItems          | Clear all items                |
-| DELETE | DeleteDesign            | Delete a design                |
-| DELETE | DeleteWorkbench         | Delete a workbench             |
-| DELETE | DeleteQueueElement      | Remove queue entry             |
-| GET    | GetDeviceStatus         | Laser hardware status          |
-| GET    | GetJobsStatus           | Running job status             |
-| GET    | GetImportProfiles       | Available import profiles      |
-| GET    | GetTableCameraStream    | Live table camera feed         |
-
-Full internal API (non-OpenAPI) is also available with many more endpoints — see `docs/swagger.json` and the internal API docs below.
-
-## Internal API Endpoints (Selected)
-
-These are not in the OpenAPI spec but are available on port 5001:
-
-| Method | Endpoint                          | Description                    |
-|--------|-----------------------------------|--------------------------------|
-| POST   | /api/User/SignIn                  | Authenticate, get JWT          |
-| POST   | /api/User/SignOut                 | Sign out                       |
-| GET    | /api/Diagnostics/GetProcessesState| Ruby service health            |
-| GET    | /api/Proxy/ListDevices            | List connected lasers          |
-| POST   | /api/Proxy/AddDevice              | Register a laser               |
-| GET    | /api/Info/GetVersionInfo          | Ruby version info              |
-| GET    | /api/Queue/GetQueue               | Full queue state               |
-| POST   | /api/Queue/RunQueue               | Start processing queue         |
-| POST   | /api/Queue/Stop                   | Stop queue                     |
-| GET    | /api/Device/SetKeyStatus          | Key switch status              |
-| GET    | /api/Camera/Devices               | Camera devices                 |
-| GET    | /api/Camera/Frame                 | Camera frame capture           |
-| GET    | /api/Settings/GetDeviceSettings   | Device configuration           |
-
-## Device Info
-
-- **Model**: Trotec Q400 RF (CO2 laser, RF-excited)
-- **Serial**: Q42-3066
-- **Work Area**: 1033.6mm x 631.3mm
-- **Z Range**: -199.9mm to -0.1mm
-- **USB**: VID_1CBE PID_0002 on COM3
-- **Connection**: Direct USB to MiniPC_103
-- **Capabilities**: PrintAndCut, MoveXY, MoveZ, Vision, DashedPattern, JobTimeEstimation, SafeOperationMode, CutBezier
 
 ## Troubleshooting
 
-### Device Setup (First Time)
+### Common Error Codes
 
-If `PlotterProcess` shows as Down with `NoDeviceSelectedInConfig`:
-
-1. Verify the laser is connected: `./tunnel.sh exec "wmic path Win32_PnPEntity where \"Caption like '%USB%'\" get Caption,DeviceID,Status /format:csv"`
-2. Verify cloud config: POST to `/api/Proxy/VerifyCloudDeviceConfig?serialNo=Q42-3066`
-3. Add the device: POST to `/api/Proxy/AddDevice?serialNo=Q42-3066&modelId=Q400_RF&deviceConfigSource=TrotecSettings&machineLayer=Plotter`
-   - This downloads factory calibration from Trotec cloud — can take several minutes on slow connections
-4. Check processes: GET `/api/Diagnostics/GetProcessesState` — PlotterProcess should be Running
-
-### Config Files on Windows
-
-| Path | Purpose |
+| Code | Meaning |
 |------|---------|
-| `C:\ProgramData\Trotec\JobDispatcher.ConsoleServer\Config.xml` | Machine model config |
-| `C:\ProgramData\Trotec\MachineLayer.Configuration\` | Device calibration data |
-| `C:\ProgramData\Trotec\JobDispatcher.ConsoleServer\log_ML.init.log` | PlotterProcess startup log |
-| `C:\Program Files (x86)\Trotec\Ruby\` | Ruby installation |
-| `C:\Program Files (x86)\Trotec\Ruby\JobDispatcher\Options\AllMachineConfigurations.json` | All supported models |
+| ERR_QUEUE_000 | No device connected/selected |
+| ERR_QUEUE_007 | Device not ready (needs homing/init) |
+| ERR_DEVCOM_006 | Table move rejected (close lid, turn key) |
+| ERR_GENERAL_100 | Missing or invalid parameter |
+| ERR_TRB_005 | Cloud calibration download failed |
+
+### First-Time Device Setup
+
+If the laser has never been configured with Ruby:
+
+```bash
+# 1. Verify laser serial with Trotec cloud
+curl -sk "https://localhost:5001/api/Proxy/VerifyCloudDeviceConfig?serialNo=YOUR-SERIAL" \
+  -X POST -H "Authorization: Bearer $TOKEN"
+
+# 2. Add the device (uses cloud calibration — can take minutes)
+curl -sk "https://localhost:5001/api/Proxy/AddDevice?serialNo=YOUR-SERIAL&modelId=MODEL&deviceConfigSource=TrotecSettings&machineLayer=Plotter" \
+  -X POST -H "Authorization: Bearer $TOKEN"
+```
 
 ## License
 
-Private - project-shamrock
+MIT
+
+## Acknowledgments
+
+Built with [Claude Code](https://claude.ai/code) by [project-shamrock](https://github.com/project-shamrock).

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="30mm" version="1.1" viewBox="0 0 30 30" width="30mm"
+     xmlns="http://www.w3.org/2000/svg">
+  <defs />
+  <!-- 20mm square, red stroke = cut line -->
+  <rect x="5" y="5" width="20" height="20"
+        fill="none" stroke="red" stroke-width="0.01" />
+  <text x="15" y="17" text-anchor="middle"
+        fill="blue" font-family="monospace" font-size="3"
+        stroke="none">TEST</text>
+</svg>

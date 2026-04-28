@@ -1,5 +1,8 @@
 node_modules/
 dist/
+.venv/
+.pids/
+__pycache__/
 .env
 .env.*
 !.env.example
