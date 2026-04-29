@@ -2,7 +2,7 @@
 
 **Machine**: Trotec Q400_RF (serial Q42-3066, 60W CeramiCore RF CO2)
 **Date tested**: 2026-04-28
-**Stock**: 6mm MDF (Italian-sourced, possibly HDF — see notes)
+**Stock**: 6mm HDF (Italian-sourced, confirmed ~861 kg/m³ — see density measurement below)
 
 ## Current Best Settings
 
@@ -99,12 +99,12 @@ Good extraction from the cut zone reduces redeposit charring on the surface. Vis
 ### Surface Protection
 Apply masking tape to the material surface before cutting to reduce char marks on the face.
 
-### MDF vs HDF?
-The Italian-sourced stock appears denser than typical MDF and may be HDF. **Quick test**: weigh a 1000×600×6mm sheet.
-- MDF (700-750 kg/m³): ~2.5-2.7 kg
-- HDF (850-1000 kg/m³): ~3.0-3.6 kg
+### Confirmed: This is HDF, Not MDF
+Weighed a 1000×600×6mm sheet at **3100g** → density **~861 kg/m³**.
+- MDF (700-750 kg/m³): would weigh ~2.5-2.7 kg
+- **HDF (850-1000 kg/m³): 3.1 kg ✓**
 
-HDF produces cleaner edges but requires more power to cut through, which aligns with our experience.
+This explains the difficulty cutting through with 60W. HDF has ~20% resin content (vs 10-15% for MDF) and is pressed at higher pressure, making it significantly harder to cut. It does produce cleaner edges once you get through, but demands more power.
 
 ### Single Pass at Higher Power
 Multiple passes compound the heat-affected zone. If a 100W DC tube were installed, single-pass cutting at faster speeds would be possible, dramatically reducing charring.
