@@ -1,0 +1,290 @@
+[
+  {
+    "color": "FF0000",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 1000,
+    "z_offset": 0.0,
+    "passes": 1
+  },
+  {
+    "color": "CC0000",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 1000,
+    "z_offset": 2.88,
+    "passes": 1
+  },
+  {
+    "color": "FF3300",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 1000,
+    "z_offset": 5.75,
+    "passes": 1
+  },
+  {
+    "color": "CC3300",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 1000,
+    "z_offset": 0.0,
+    "passes": 1
+  },
+  {
+    "color": "FF6600",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 1000,
+    "z_offset": 1.92,
+    "passes": 1
+  },
+  {
+    "color": "CC6600",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 1000,
+    "z_offset": 3.83,
+    "passes": 1
+  },
+  {
+    "color": "FF9900",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 1000,
+    "z_offset": 5.75,
+    "passes": 1
+  },
+  {
+    "color": "CC9900",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 1000,
+    "z_offset": 0.0,
+    "passes": 1
+  },
+  {
+    "color": "FFCC00",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 1000,
+    "z_offset": 1.44,
+    "passes": 1
+  },
+  {
+    "color": "CCCC00",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 1000,
+    "z_offset": 2.88,
+    "passes": 1
+  },
+  {
+    "color": "999900",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 1000,
+    "z_offset": 4.31,
+    "passes": 1
+  },
+  {
+    "color": "99CC00",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 1000,
+    "z_offset": 5.75,
+    "passes": 1
+  },
+  {
+    "color": "669900",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 3000,
+    "z_offset": 0.0,
+    "passes": 1
+  },
+  {
+    "color": "339900",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 3000,
+    "z_offset": 2.88,
+    "passes": 1
+  },
+  {
+    "color": "009933",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 3000,
+    "z_offset": 5.75,
+    "passes": 1
+  },
+  {
+    "color": "009966",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 3000,
+    "z_offset": 0.0,
+    "passes": 1
+  },
+  {
+    "color": "009999",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 3000,
+    "z_offset": 1.92,
+    "passes": 1
+  },
+  {
+    "color": "006699",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 3000,
+    "z_offset": 3.83,
+    "passes": 1
+  },
+  {
+    "color": "990033",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 3000,
+    "z_offset": 5.75,
+    "passes": 1
+  },
+  {
+    "color": "990066",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 3000,
+    "z_offset": 0.0,
+    "passes": 1
+  },
+  {
+    "color": "CC0066",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 3000,
+    "z_offset": 1.44,
+    "passes": 1
+  },
+  {
+    "color": "FF0066",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 3000,
+    "z_offset": 2.88,
+    "passes": 1
+  },
+  {
+    "color": "FF0099",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 3000,
+    "z_offset": 4.31,
+    "passes": 1
+  },
+  {
+    "color": "CC0099",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 3000,
+    "z_offset": 5.75,
+    "passes": 1
+  },
+  {
+    "color": "990099",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 5000,
+    "z_offset": 0.0,
+    "passes": 1
+  },
+  {
+    "color": "660099",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 5000,
+    "z_offset": 2.88,
+    "passes": 1
+  },
+  {
+    "color": "993300",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 5000,
+    "z_offset": 5.75,
+    "passes": 1
+  },
+  {
+    "color": "663300",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 5000,
+    "z_offset": 0.0,
+    "passes": 1
+  },
+  {
+    "color": "996633",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 5000,
+    "z_offset": 1.92,
+    "passes": 1
+  },
+  {
+    "color": "CC3333",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 5000,
+    "z_offset": 3.83,
+    "passes": 1
+  },
+  {
+    "color": "993333",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 5000,
+    "z_offset": 5.75,
+    "passes": 1
+  },
+  {
+    "color": "CC6633",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 5000,
+    "z_offset": 0.0,
+    "passes": 1
+  },
+  {
+    "color": "FF3333",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 5000,
+    "z_offset": 1.44,
+    "passes": 1
+  },
+  {
+    "color": "FF6633",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 5000,
+    "z_offset": 2.88,
+    "passes": 1
+  },
+  {
+    "color": "FF9933",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 5000,
+    "z_offset": 4.31,
+    "passes": 1
+  },
+  {
+    "color": "FFCC33",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 5000,
+    "z_offset": 5.75,
+    "passes": 1
+  }
+]

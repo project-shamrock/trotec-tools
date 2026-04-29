@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="140mm" version="1.1"
+     viewBox="0 0 170 140" width="170mm"
+     xmlns="http://www.w3.org/2000/svg">
+  <text fill="#0000FF" font-family="monospace" font-size="3" x="5" y="8">
+    FOCAL SWEEP CUT TEST - 6mm HDF - S0.5% P100%</text>
+  <text fill="#0000FF" font-family="monospace" font-size="2" x="5" y="14">
+    Z walks through material depth on each pass</text>
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="40" y="18">3 pass</text>
+  <text fill="#0000FF" font-family="monospace" font-size="1.5" x="37" y="23">Z: 0.0,2.9,5.8</text>
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="75" y="18">4 pass</text>
+  <text fill="#0000FF" font-family="monospace" font-size="1.5" x="72" y="23">Z: 0.0,1.9,3.8,5.8</text>
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="110" y="18">5 pass</text>
+  <text fill="#0000FF" font-family="monospace" font-size="1.5" x="107" y="23">Z: 0.0,1.4,2.9,4.3,5.8</text>
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="5" y="36">1kHz</text>
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="5" y="66">3kHz</text>
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="5" y="96">5kHz</text>
+  <circle cx="45" cy="35" r="5" fill="none" stroke="#FF0000" stroke-width="0.01"/>
+  <circle cx="45" cy="35" r="5" fill="none" stroke="#CC0000" stroke-width="0.01"/>
+  <circle cx="45" cy="35" r="5" fill="none" stroke="#FF3300" stroke-width="0.01"/>
+  <circle cx="80" cy="35" r="5" fill="none" stroke="#CC3300" stroke-width="0.01"/>
+  <circle cx="80" cy="35" r="5" fill="none" stroke="#FF6600" stroke-width="0.01"/>
+  <circle cx="80" cy="35" r="5" fill="none" stroke="#CC6600" stroke-width="0.01"/>
+  <circle cx="80" cy="35" r="5" fill="none" stroke="#FF9900" stroke-width="0.01"/>
+  <circle cx="115" cy="35" r="5" fill="none" stroke="#CC9900" stroke-width="0.01"/>
+  <circle cx="115" cy="35" r="5" fill="none" stroke="#FFCC00" stroke-width="0.01"/>
+  <circle cx="115" cy="35" r="5" fill="none" stroke="#CCCC00" stroke-width="0.01"/>
+  <circle cx="115" cy="35" r="5" fill="none" stroke="#999900" stroke-width="0.01"/>
+  <circle cx="115" cy="35" r="5" fill="none" stroke="#99CC00" stroke-width="0.01"/>
+  <circle cx="45" cy="65" r="5" fill="none" stroke="#669900" stroke-width="0.01"/>
+  <circle cx="45" cy="65" r="5" fill="none" stroke="#339900" stroke-width="0.01"/>
+  <circle cx="45" cy="65" r="5" fill="none" stroke="#009933" stroke-width="0.01"/>
+  <circle cx="80" cy="65" r="5" fill="none" stroke="#009966" stroke-width="0.01"/>
+  <circle cx="80" cy="65" r="5" fill="none" stroke="#009999" stroke-width="0.01"/>
+  <circle cx="80" cy="65" r="5" fill="none" stroke="#006699" stroke-width="0.01"/>
+  <circle cx="80" cy="65" r="5" fill="none" stroke="#990033" stroke-width="0.01"/>
+  <circle cx="115" cy="65" r="5" fill="none" stroke="#990066" stroke-width="0.01"/>
+  <circle cx="115" cy="65" r="5" fill="none" stroke="#CC0066" stroke-width="0.01"/>
+  <circle cx="115" cy="65" r="5" fill="none" stroke="#FF0066" stroke-width="0.01"/>
+  <circle cx="115" cy="65" r="5" fill="none" stroke="#FF0099" stroke-width="0.01"/>
+  <circle cx="115" cy="65" r="5" fill="none" stroke="#CC0099" stroke-width="0.01"/>
+  <circle cx="45" cy="95" r="5" fill="none" stroke="#990099" stroke-width="0.01"/>
+  <circle cx="45" cy="95" r="5" fill="none" stroke="#660099" stroke-width="0.01"/>
+  <circle cx="45" cy="95" r="5" fill="none" stroke="#993300" stroke-width="0.01"/>
+  <circle cx="80" cy="95" r="5" fill="none" stroke="#663300" stroke-width="0.01"/>
+  <circle cx="80" cy="95" r="5" fill="none" stroke="#996633" stroke-width="0.01"/>
+  <circle cx="80" cy="95" r="5" fill="none" stroke="#CC3333" stroke-width="0.01"/>
+  <circle cx="80" cy="95" r="5" fill="none" stroke="#993333" stroke-width="0.01"/>
+  <circle cx="115" cy="95" r="5" fill="none" stroke="#CC6633" stroke-width="0.01"/>
+  <circle cx="115" cy="95" r="5" fill="none" stroke="#FF3333" stroke-width="0.01"/>
+  <circle cx="115" cy="95" r="5" fill="none" stroke="#FF6633" stroke-width="0.01"/>
+  <circle cx="115" cy="95" r="5" fill="none" stroke="#FF9933" stroke-width="0.01"/>
+  <circle cx="115" cy="95" r="5" fill="none" stroke="#FFCC33" stroke-width="0.01"/>
+</svg>
