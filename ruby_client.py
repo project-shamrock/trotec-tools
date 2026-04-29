@@ -64,21 +64,29 @@ class RubyClient:
         """Get laser device status via OpenAPI."""
         resp = self.session.get(f"{API_BASE}/api/OpenApi/GetDeviceStatus",
                                 headers={"x-api-version": API_VERSION})
+        if not resp.content:
+            return {"status": "unknown", "note": "empty response"}
         return resp.json()
 
     def list_devices(self):
         """List all connected devices."""
         resp = self.session.get(f"{API_BASE}/api/Proxy/ListDevices")
+        if not resp.content:
+            return []
         return resp.json()
 
     def get_processes(self):
         """Get Ruby service process states."""
         resp = self.session.get(f"{API_BASE}/api/Diagnostics/GetProcessesState")
+        if not resp.content:
+            return []
         return resp.json()
 
     def get_version(self):
         """Get Ruby software version info."""
         resp = self.session.get(f"{API_BASE}/api/Info/GetVersionInfo")
+        if not resp.content:
+            return {}
         return resp.json()
 
     # --- Designs & Workbenches ---
@@ -87,22 +95,30 @@ class RubyClient:
         """List uploaded designs."""
         resp = self.session.get(f"{API_BASE}/api/OpenApi/GetDesigns",
                                 headers={"x-api-version": API_VERSION})
+        if not resp.content:
+            return []
         return resp.json()
 
     def get_workbenches(self):
         """List workbenches."""
         resp = self.session.get(f"{API_BASE}/api/OpenApi/GetWorkbenches",
                                 headers={"x-api-version": API_VERSION})
+        if not resp.content:
+            return []
         return resp.json()
 
     def get_designs_internal(self):
         """List designs via internal API (more detail)."""
         resp = self.session.get(f"{API_BASE}/api/DesignData/GetDesigns")
+        if not resp.content:
+            return []
         return resp.json()
 
     def get_workbenches_internal(self):
         """List workbenches via internal API (more detail)."""
         resp = self.session.get(f"{API_BASE}/api/Workbench/GetWorkbenches")
+        if not resp.content:
+            return []
         return resp.json()
 
     # --- File Upload ---
@@ -123,7 +139,7 @@ class RubyClient:
             )
 
         result = resp.json() if resp.content else {}
-        if resp.status_code == 200 and not any(k.startswith("code") for k in result):
+        if resp.status_code == 200 and "code" not in result:
             print(f"Upload successful!")
         else:
             print(f"Upload response ({resp.status_code}): {result}")
@@ -282,7 +298,8 @@ def main():
     if len(sys.argv) < 2:
         print("Usage: ruby_client.py <command> [args]")
         print("Commands: status, upload <file>, designs, workbenches, queue,")
-        print("          move-z <mm>, processes, version, resume, acknowledge")
+        print("          move-z <mm>, processes, version, resume, acknowledge,")
+        print("          logs [ml|nc|issues|api|status] [lines]")
         return
 
     client = RubyClient()
@@ -331,6 +348,28 @@ def main():
             print(client.acknowledge_issues(ids))
         else:
             print("No issues to acknowledge")
+    elif cmd == "logs":
+        import subprocess
+        log_files = {
+            "ml": "log_ML.log",
+            "nc": "log_ML.nc.log",
+            "issues": "log_Issues.log",
+            "api": "log_Api.log",
+            "status": "log_StatusD.log",
+        }
+        which = sys.argv[2] if len(sys.argv) > 2 else "ml"
+        lines = int(sys.argv[3]) if len(sys.argv) > 3 else 50
+        if which not in log_files:
+            print(f"Available logs: {', '.join(log_files.keys())}")
+            return
+        log_path = f"C:\\ProgramData\\Trotec\\JobDispatcher.ConsoleServer\\{log_files[which]}"
+        result = subprocess.run(
+            ["ssh", "trotec", f'powershell -Command "Get-Content \'{log_path}\' -Tail {lines}"'],
+            capture_output=True, text=True, timeout=30,
+        )
+        print(result.stdout)
+        if result.stderr and "WARNING" not in result.stderr:
+            print(result.stderr)
     else:
         print(f"Unknown command: {cmd}")
 

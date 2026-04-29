@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="150mm" version="1.1" viewBox="0 0 210 150" width="210mm"
+     xmlns="http://www.w3.org/2000/svg">
+  <!--
+    CUT PARAMETER GRID 3 - Multi-pass ablation vs slow burn
+    Rows: Passes (2, 3, 4, 5, 6, 8)
+    Cols: Speed (0.25%, 0.5%, 1%, 2%)
+    All: Power 100%, Freq 10000Hz, ZOffset 3mm
+  -->
+
+  <text fill="#0000FF" font-family="monospace" font-size="3" x="5" y="8">CUT GRID 3 - P100% F10k Z+3</text>
+  <text fill="#0000FF" font-family="monospace" font-size="2" x="5" y="14">More passes + faster speed = less char?</text>
+
+  <!-- Column headers -->
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="43" y="24">S 0.25%</text>
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="78" y="24">S 0.5%</text>
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="113" y="24">S 1%</text>
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="148" y="24">S 2%</text>
+
+  <!-- Row 1: 2 passes -->
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="5" y="38">2 pass</text>
+  <circle cx="52" cy="36" r="4" fill="none" stroke="#FF0000" stroke-width="0.01"/>
+  <circle cx="87" cy="36" r="4" fill="none" stroke="#FF3300" stroke-width="0.01"/>
+  <circle cx="122" cy="36" r="4" fill="none" stroke="#FF6600" stroke-width="0.01"/>
+  <circle cx="157" cy="36" r="4" fill="none" stroke="#FF9900" stroke-width="0.01"/>
+
+  <!-- Row 2: 3 passes -->
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="5" y="58">3 pass</text>
+  <circle cx="52" cy="56" r="4" fill="none" stroke="#CC0000" stroke-width="0.01"/>
+  <circle cx="87" cy="56" r="4" fill="none" stroke="#CC3300" stroke-width="0.01"/>
+  <circle cx="122" cy="56" r="4" fill="none" stroke="#CC6600" stroke-width="0.01"/>
+  <circle cx="157" cy="56" r="4" fill="none" stroke="#CC9900" stroke-width="0.01"/>
+
+  <!-- Row 3: 4 passes -->
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="5" y="78">4 pass</text>
+  <circle cx="52" cy="76" r="4" fill="none" stroke="#990000" stroke-width="0.01"/>
+  <circle cx="87" cy="76" r="4" fill="none" stroke="#993300" stroke-width="0.01"/>
+  <circle cx="122" cy="76" r="4" fill="none" stroke="#996600" stroke-width="0.01"/>
+  <circle cx="157" cy="76" r="4" fill="none" stroke="#999900" stroke-width="0.01"/>
+
+  <!-- Row 4: 5 passes -->
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="5" y="98">5 pass</text>
+  <circle cx="52" cy="96" r="4" fill="none" stroke="#660000" stroke-width="0.01"/>
+  <circle cx="87" cy="96" r="4" fill="none" stroke="#663300" stroke-width="0.01"/>
+  <circle cx="122" cy="96" r="4" fill="none" stroke="#666600" stroke-width="0.01"/>
+  <circle cx="157" cy="96" r="4" fill="none" stroke="#669900" stroke-width="0.01"/>
+
+  <!-- Row 5: 6 passes -->
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="5" y="118">6 pass</text>
+  <circle cx="52" cy="116" r="4" fill="none" stroke="#330000" stroke-width="0.01"/>
+  <circle cx="87" cy="116" r="4" fill="none" stroke="#333300" stroke-width="0.01"/>
+  <circle cx="122" cy="116" r="4" fill="none" stroke="#336600" stroke-width="0.01"/>
+  <circle cx="157" cy="116" r="4" fill="none" stroke="#339900" stroke-width="0.01"/>
+
+  <!-- Row 6: 8 passes -->
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="5" y="138">8 pass</text>
+  <circle cx="52" cy="136" r="4" fill="none" stroke="#003300" stroke-width="0.01"/>
+  <circle cx="87" cy="136" r="4" fill="none" stroke="#006600" stroke-width="0.01"/>
+  <circle cx="122" cy="136" r="4" fill="none" stroke="#009900" stroke-width="0.01"/>
+  <circle cx="157" cy="136" r="4" fill="none" stroke="#00CC00" stroke-width="0.01"/>
+</svg>

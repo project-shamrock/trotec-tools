@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="130mm" version="1.1" viewBox="0 0 160 130" width="160mm"
+     xmlns="http://www.w3.org/2000/svg">
+  <!--
+    CUT PARAMETER GRID TEST - 6mm MDF
+    Rows: Speed (3%, 2%, 1%, 0.5%, 0.25%)
+    Cols: Passes (1, 2, 3, 4)
+    All: Power 100%, Freq 1000Hz, ZOffset 3mm
+    Each 8mm circle has a unique color -> unique cut effect
+  -->
+
+  <!-- Title (blue = engrave) -->
+  <text fill="#0000FF" font-family="monospace" font-size="3" x="5" y="8">CUT GRID - 6mm MDF - P100% F1000 Z+3</text>
+
+  <!-- Column headers -->
+  <text fill="#0000FF" font-family="monospace" font-size="2.5" x="48" y="18">1 pass</text>
+  <text fill="#0000FF" font-family="monospace" font-size="2.5" x="78" y="18">2 pass</text>
+  <text fill="#0000FF" font-family="monospace" font-size="2.5" x="108" y="18">3 pass</text>
+  <text fill="#0000FF" font-family="monospace" font-size="2.5" x="138" y="18">4 pass</text>
+
+  <!-- Row 1: Speed 3% -->
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="5" y="32">Spd 3%</text>
+  <circle cx="55" cy="30" r="4" fill="none" stroke="#FF0000" stroke-width="0.01"/>
+  <circle cx="85" cy="30" r="4" fill="none" stroke="#FF3300" stroke-width="0.01"/>
+  <circle cx="115" cy="30" r="4" fill="none" stroke="#FF6600" stroke-width="0.01"/>
+  <circle cx="145" cy="30" r="4" fill="none" stroke="#FF9900" stroke-width="0.01"/>
+
+  <!-- Row 2: Speed 2% -->
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="5" y="52">Spd 2%</text>
+  <circle cx="55" cy="50" r="4" fill="none" stroke="#CC0000" stroke-width="0.01"/>
+  <circle cx="85" cy="50" r="4" fill="none" stroke="#CC3300" stroke-width="0.01"/>
+  <circle cx="115" cy="50" r="4" fill="none" stroke="#CC6600" stroke-width="0.01"/>
+  <circle cx="145" cy="50" r="4" fill="none" stroke="#CC9900" stroke-width="0.01"/>
+
+  <!-- Row 3: Speed 1% -->
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="5" y="72">Spd 1%</text>
+  <circle cx="55" cy="70" r="4" fill="none" stroke="#990000" stroke-width="0.01"/>
+  <circle cx="85" cy="70" r="4" fill="none" stroke="#993300" stroke-width="0.01"/>
+  <circle cx="115" cy="70" r="4" fill="none" stroke="#996600" stroke-width="0.01"/>
+  <circle cx="145" cy="70" r="4" fill="none" stroke="#999900" stroke-width="0.01"/>
+
+  <!-- Row 4: Speed 0.5% -->
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="5" y="92">Spd 0.5%</text>
+  <circle cx="55" cy="90" r="4" fill="none" stroke="#660000" stroke-width="0.01"/>
+  <circle cx="85" cy="90" r="4" fill="none" stroke="#663300" stroke-width="0.01"/>
+  <circle cx="115" cy="90" r="4" fill="none" stroke="#666600" stroke-width="0.01"/>
+  <circle cx="145" cy="90" r="4" fill="none" stroke="#669900" stroke-width="0.01"/>
+
+  <!-- Row 5: Speed 0.25% -->
+  <text fill="#0000FF" font-family="monospace" font-size="2.2" x="5" y="112">Spd 0.25%</text>
+  <circle cx="55" cy="110" r="4" fill="none" stroke="#330000" stroke-width="0.01"/>
+  <circle cx="85" cy="110" r="4" fill="none" stroke="#333300" stroke-width="0.01"/>
+  <circle cx="115" cy="110" r="4" fill="none" stroke="#336600" stroke-width="0.01"/>
+  <circle cx="145" cy="110" r="4" fill="none" stroke="#339900" stroke-width="0.01"/>
+</svg>

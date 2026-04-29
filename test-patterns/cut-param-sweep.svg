@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="120mm" version="1.1" viewBox="0 0 200 120" width="200mm"
+     xmlns="http://www.w3.org/2000/svg">
+  <!-- CUT PARAMETER SWEEP TEST
+       Each colored line = different cut settings in Ruby material database
+       Lines are 40mm long, spaced 15mm apart
+       Label text is blue (engrave layer)
+  -->
+
+  <!-- Labels (blue = engrave) -->
+  <text fill="#0000FF" font-family="monospace" font-size="3" x="5" y="8">CUT PARAMETER SWEEP - 6mm MDF</text>
+  <text fill="#0000FF" font-family="monospace" font-size="2" x="5" y="13">Power 100% | ZOffset 3mm | Freq 1000Hz</text>
+
+  <!-- Test 1: RED FF0000 - Speed 2%, 1 pass (baseline) -->
+  <text fill="#0000FF" font-family="monospace" font-size="2" x="5" y="25">1: Spd 2% x1 pass</text>
+  <line x1="70" y1="23" x2="110" y2="23" stroke="#FF0000" stroke-width="0.01"/>
+
+  <!-- Test 2: DARK RED CC0000 - Speed 1%, 1 pass -->
+  <text fill="#0000FF" font-family="monospace" font-size="2" x="5" y="40">2: Spd 1% x1 pass</text>
+  <line x1="70" y1="38" x2="110" y2="38" stroke="#CC0000" stroke-width="0.01"/>
+
+  <!-- Test 3: ORANGE FF6600 - Speed 2%, 2 passes -->
+  <text fill="#0000FF" font-family="monospace" font-size="2" x="5" y="55">3: Spd 2% x2 pass</text>
+  <line x1="70" y1="53" x2="110" y2="53" stroke="#FF6600" stroke-width="0.01"/>
+
+  <!-- Test 4: DARK ORANGE CC6600 - Speed 1%, 2 passes -->
+  <text fill="#0000FF" font-family="monospace" font-size="2" x="5" y="70">4: Spd 1% x2 pass</text>
+  <line x1="70" y1="68" x2="110" y2="68" stroke="#CC6600" stroke-width="0.01"/>
+
+  <!-- Test 5: MAGENTA FF00FF - Speed 0.5%, 1 pass -->
+  <text fill="#0000FF" font-family="monospace" font-size="2" x="5" y="85">5: Spd 0.5% x1 pass</text>
+  <line x1="70" y1="83" x2="110" y2="83" stroke="#FF00FF" stroke-width="0.01"/>
+
+  <!-- Test 6: PURPLE 990099 - Speed 0.5%, 2 passes -->
+  <text fill="#0000FF" font-family="monospace" font-size="2" x="5" y="100">6: Spd 0.5% x2 pass</text>
+  <line x1="70" y1="98" x2="110" y2="98" stroke="#990099" stroke-width="0.01"/>
+
+  <!-- Test 7: GREEN 00FF00 - Speed 2%, 3 passes -->
+  <text fill="#0000FF" font-family="monospace" font-size="2" x="5" y="115">7: Spd 2% x3 pass</text>
+  <line x1="70" y1="113" x2="110" y2="113" stroke="#00FF00" stroke-width="0.01"/>
+</svg>
