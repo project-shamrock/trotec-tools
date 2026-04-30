@@ -257,18 +257,41 @@ Always re-focus when changing materials or stock thickness.
 \begin{frame}{Getting Good Results}
 \begin{itemize}
     \item \textbf{Masking tape} on the surface reduces char marks on the face
-    \item \textbf{Inner geometry first:} Ruby cuts holes before outlines by default
-        (good --- parts don't shift mid-cut)
+    \item \textbf{Sand the edges} lightly after cutting to remove char
     \item \textbf{Kerf:} the beam removes $\sim$0.1--0.5\,mm of material.
         For press-fit joints, test with a kerf coupon first.
     \item \textbf{Taper:} with midplane focus, taper is minimal
         ($\sim$0.03\,mm difference top-to-bottom on 6\,mm HDF).
         Without midplane focus, expect $\sim$7\textdegree{} taper.
-    \item \textbf{Speed vs.\ quality:} slower = cleaner edges but more charring.
-        Multi-pass at higher speed can reduce heat buildup.
+    \item \textbf{Inner geometry first:} Ruby cuts holes before outlines by default
+        (good --- parts don't shift mid-cut)
     \item \textbf{Test first:} always run a small test piece before committing
         to a full sheet, especially with new materials.
 \end{itemize}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Project Ideas}
+\begin{itemize}
+    \item \textbf{Stack and castellate:} glue layers together and use interlocking
+        butt joints to build thick, strong structures ---
+        furniture, enclosures, jigs
+    \item \textbf{Upholstery frames:} MDF makes excellent frames for
+        upholstery work --- wrap with batting, stretch fabric over, staple
+    \item \textbf{Composite wrapping:} tightly wrap cut MDF parts in packing tape
+        for a smooth, sealed surface with added rigidity ---
+        a quick ``poor man's laminate''
+    \item \textbf{Fabric \& paper:} cut fabric, felt, cardstock, or sticker paper
+        for textiles, packaging, stencils, and decals
+    \item \textbf{Living hinges:} parallel kerf cuts in thin material
+        let flat sheets bend into curves
+    \item \textbf{Parametric design:} use code to generate SVGs ---
+        finger joints, hex grids, test coupons, nesting layouts
+\end{itemize}
+
+\vspace{0.5em}
+{\small This is a creative tool for the Good Studio community ---
+if you have an idea, try it!}
 \end{frame}
 
 % ---------------------------------------------------------------
@@ -302,6 +325,31 @@ pick up where previous sessions left off.}
 \end{frame}
 
 % ---------------------------------------------------------------
+% ---------------------------------------------------------------
+\section{Maintenance}
+
+\begin{frame}{Keeping the Machine Happy}
+\begin{itemize}
+    \item \textbf{Lens cleaning:} the focus lens and mirrors accumulate smoke residue.
+        Clean periodically with lens wipes and isopropyl alcohol.
+        The optics are coated ZnSe --- handle gently, don't scratch.
+        Look up Trotec lens cleaning on YouTube for technique.
+    \item \textbf{Honeycomb tray:} MDF cutting deposits sticky resin on the tray.
+        Remove it periodically and soak in warm water to dissolve the buildup.
+    \item \textbf{Exhaust path:} check that the exhaust hose and fan intake
+        aren't clogged with dust.
+    \item \textbf{Replacement optics:} coated lenses are consumable.
+        OEM replacements are expensive; compatible ZnSe lenses
+        are available on AliExpress/Alibaba at lower cost.
+\end{itemize}
+
+\begin{block}{Trotec Support}
+\textbf{Richard Welsing} --- Trotec Technical Support\\
+\texttt{support@troteclaser.nl} --- Case\# 00532035 (or open new)
+\end{block}
+\end{frame}
+
+% ---------------------------------------------------------------
 \begin{frame}{Questions?}
 \centering
 \vspace{2em}
@@ -314,6 +362,7 @@ pick up where previous sessions left off.}
 \textbf{Materials} & HDF 6\,mm standard stock \\
 \textbf{Shop hours} & Cutoff at 8\,PM \\
 \textbf{Location} & Good Studio, Via Faentina 244/8, Firenze \\
+\textbf{Support} & \texttt{support@troteclaser.nl} \\
 \textbf{Repo} & \texttt{project-shamrock/trotec-tools} \\
 \end{tabular}
 \end{frame}
