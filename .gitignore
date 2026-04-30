@@ -8,3 +8,9 @@ __pycache__/
 !.env.example
 *.log
 .DS_Store
+docs/laser-intro.aux
+docs/laser-intro.nav
+docs/laser-intro.out
+docs/laser-intro.snm
+docs/laser-intro.toc
+docs/laser-intro.log

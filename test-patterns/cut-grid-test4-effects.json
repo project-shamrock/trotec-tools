@@ -1,0 +1,74 @@
+[
+  {
+    "color": "FF0000",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 1000,
+    "z_offset": 0,
+    "passes": 1
+  },
+  {
+    "color": "00FFFF",
+    "speed": 0.7,
+    "power": 100,
+    "frequency": 1000,
+    "z_offset": 0,
+    "passes": 2
+  },
+  {
+    "color": "00FF00",
+    "speed": 1.0,
+    "power": 100,
+    "frequency": 1000,
+    "z_offset": 0,
+    "passes": 3
+  },
+  {
+    "color": "FF6600",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 3000,
+    "z_offset": 0,
+    "passes": 1
+  },
+  {
+    "color": "FFFF00",
+    "speed": 0.7,
+    "power": 100,
+    "frequency": 3000,
+    "z_offset": 0,
+    "passes": 2
+  },
+  {
+    "color": "FF00FF",
+    "speed": 1.0,
+    "power": 100,
+    "frequency": 3000,
+    "z_offset": 0,
+    "passes": 3
+  },
+  {
+    "color": "336699",
+    "speed": 0.5,
+    "power": 100,
+    "frequency": 5000,
+    "z_offset": 0,
+    "passes": 1
+  },
+  {
+    "color": "009933",
+    "speed": 0.7,
+    "power": 100,
+    "frequency": 5000,
+    "z_offset": 0,
+    "passes": 2
+  },
+  {
+    "color": "9900CC",
+    "speed": 1.0,
+    "power": 100,
+    "frequency": 5000,
+    "z_offset": 0,
+    "passes": 3
+  }
+]

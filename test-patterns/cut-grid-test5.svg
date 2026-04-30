@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg baseProfile="full" height="115mm" version="1.1"
+     viewBox="0 0 140 115" width="140mm"
+     xmlns="http://www.w3.org/2000/svg">
+  <text fill="#000000" font-family="monospace" font-size="3" x="5" y="8">
+    GRID 4: FREQ x PASSES - P100% Z0</text>
+  <text fill="#000000" font-family="monospace" font-size="2.2" x="32" y="20">1 pass</text>
+  <text fill="#000000" font-family="monospace" font-size="2.2" x="62" y="20">2 pass</text>
+  <text fill="#000000" font-family="monospace" font-size="2.2" x="92" y="20">3 pass</text>
+  <text fill="#000000" font-family="monospace" font-size="2.2" x="5" y="31">1kHz</text>
+  <text fill="#000000" font-family="monospace" font-size="2.2" x="5" y="56">3kHz</text>
+  <text fill="#000000" font-family="monospace" font-size="2.2" x="5" y="81">5kHz</text>
+  <circle cx="35" cy="30" r="5" fill="none" stroke="#FF0000" stroke-width="0.01"/>
+  <circle cx="65" cy="30" r="5" fill="none" stroke="#00FFFF" stroke-width="0.01"/>
+  <circle cx="95" cy="30" r="5" fill="none" stroke="#00FF00" stroke-width="0.01"/>
+  <circle cx="35" cy="55" r="5" fill="none" stroke="#FF6600" stroke-width="0.01"/>
+  <circle cx="65" cy="55" r="5" fill="none" stroke="#FFFF00" stroke-width="0.01"/>
+  <circle cx="95" cy="55" r="5" fill="none" stroke="#FF00FF" stroke-width="0.01"/>
+  <circle cx="35" cy="80" r="5" fill="none" stroke="#336699" stroke-width="0.01"/>
+  <circle cx="65" cy="80" r="5" fill="none" stroke="#009933" stroke-width="0.01"/>
+  <circle cx="95" cy="80" r="5" fill="none" stroke="#9900CC" stroke-width="0.01"/>
+</svg>

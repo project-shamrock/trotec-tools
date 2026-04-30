@@ -1,0 +1,321 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+\title{Laser Cutter Quick Start}
+\subtitle{Trotec Q400 RF --- 60W CO\textsubscript{2}}
+\date{\today}
+\author{Good Studio --- Via Faentina 244/8, Firenze}
+
+\begin{document}
+
+\maketitle
+
+% ---------------------------------------------------------------
+\section{Background}
+
+\begin{frame}{How a CO\textsubscript{2} Laser Cutter Works}
+\begin{columns}
+\begin{column}{0.55\textwidth}
+\begin{itemize}
+    \item RF-excited CO\textsubscript{2} tube generates a 10.6\,\textmu m infrared beam
+    \item Beam is steered by mirrors and focused by a lens onto the work surface
+    \item Focused spot ($\sim$0.1\,mm) vaporizes or melts material
+    \item \textbf{Two modes:}
+    \begin{itemize}
+        \item \textbf{Engraving} --- beam rasters across the surface (like a printer)
+        \item \textbf{Cutting} --- beam traces vector paths through the material
+    \end{itemize}
+    \item Air assist blows debris from the cut; exhaust extracts smoke
+\end{itemize}
+\end{column}
+\begin{column}{0.4\textwidth}
+\begin{block}{Key Parameters}
+\begin{description}
+    \item[Power] Beam intensity (\%)
+    \item[Speed] Head travel rate (\%)
+    \item[Frequency] Pulse rate (Hz)
+    \item[Passes] Repeat count
+\end{description}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{What Can You Do With 60W?}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\textbf{Cuts well:}
+\begin{itemize}
+    \item Acrylic --- up to $\sim$10\,mm
+    \item MDF / HDF --- up to $\sim$6\,mm
+    \item Plywood --- up to $\sim$6\,mm (depends on glue)
+    \item Cardboard, paper, fabric
+    \item Leather, felt, foam
+    \item Thin wood veneers
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\textbf{Engraves well:}
+\begin{itemize}
+    \item Wood, MDF, cork
+    \item Acrylic (frosted finish)
+    \item Anodized aluminum
+    \item Coated metals, glass (surface mark)
+    \item Stone, slate, tile
+\end{itemize}
+\vspace{1em}
+\alert{\textbf{Never cut:}}
+\begin{itemize}
+    \item PVC / vinyl (emits chlorine gas)
+    \item Polycarbonate (burns, toxic)
+    \item ABS (toxic fumes)
+    \item Metals (reflects beam)
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\section{Our Machine}
+
+\begin{frame}{Trotec Q400 RF Overview}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+    \item \textbf{Model:} Q400 RF (serial Q42-3066)
+    \item \textbf{Tube:} 60W CeramiCore RF CO\textsubscript{2}
+    \item \textbf{Bed:} 1000 $\times$ 610\,mm
+    \item \textbf{Software:} Trotec Ruby (browser-based)
+    \item \textbf{Location:} MiniPC\_103 controls the laser via USB
+    \item \textbf{Network:} \texttt{MiniPC\_103} on shop Wi-Fi
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{block}{Stock Sheets}
+Our standard stock is 1000$\times$600\,mm, 6\,mm HDF.\\
+Usable area: $\sim$950$\times$550\,mm (leave margin).
+\end{block}
+\vspace{0.5em}
+\begin{block}{Tested Cut Settings (6\,mm HDF)}
+\begin{tabular}{ll}
+Power & 100\% \\
+Speed & 0.3\% \\
+Frequency & 1\,000\,Hz \\
+Passes & 1 \\
+Focus & Manual midplane \\
+\end{tabular}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\section{Safety}
+
+\begin{frame}{Safety Rules}
+\begin{alertblock}{Exhaust Fan --- MANDATORY}
+The vent fan \textbf{must} be running before you start \emph{any} job.
+Laser cutting produces toxic smoke and particulates.
+Running the laser without exhaust is dangerous to your health
+and will contaminate the workspace.
+\textbf{Verify airflow before every cut.}
+\end{alertblock}
+
+\begin{itemize}
+    \item \textbf{Never leave a running job unattended.}
+        Flare-ups can happen, especially with MDF and wood.
+    \item Keep the lid closed during operation (interlock will stop the beam).
+    \item Know where the fire extinguisher is.
+    \item The beam is invisible (infrared) --- never bypass interlocks.
+    \item Check material safety \emph{before} cutting. When in doubt, don't cut it.
+\end{itemize}
+
+\begin{block}{Shop Hours}
+Laser use ends at \textbf{8:00\,PM}. The exhaust fan is loud ---
+please be respectful of neighbors. Plan jobs to finish before cutoff.
+\end{block}
+\end{frame}
+
+% ---------------------------------------------------------------
+\section{Workflow}
+
+\begin{frame}{Step 1: Prepare Your Design}
+\begin{itemize}
+    \item Create an \textbf{SVG} file (Inkscape, Illustrator, Fusion, etc.)
+    \item Use \textbf{two colors} to separate operations:
+\end{itemize}
+
+\vspace{0.5em}
+\begin{columns}
+\begin{column}{0.45\textwidth}
+\centering
+\textcolor{red}{\rule{2cm}{3pt}}\\[4pt]
+\textbf{Red} (\texttt{\#FF0000})\\
+\textbf{= Cut}\\[4pt]
+{\small Stroke color on vector paths.\\
+Set stroke width very thin (0.01\,mm).\\
+\texttt{fill="none"}}
+\end{column}
+\begin{column}{0.45\textwidth}
+\centering
+\rule{2cm}{3pt}\\[4pt]
+\textbf{Black} (\texttt{\#000000})\\
+\textbf{= Engrave}\\[4pt]
+{\small Fill color for raster areas.\\
+Text, logos, surface marks.\\
+\texttt{stroke="none"}}
+\end{column}
+\end{columns}
+
+\vspace{1em}
+\begin{exampleblock}{Tip}
+Set your document size in mm to match your stock.
+Ruby imports at 1:1 scale when units are correct.
+\end{exampleblock}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Step 2: Import into Ruby}
+\begin{enumerate}
+    \item Log into the Windows NUC:\\
+        {\small User: \texttt{Shamrock} / Password: \texttt{shamrock}}
+    \item Open \textbf{Ruby} (desktop shortcut or \texttt{https://localhost:5001})
+    \item Log into Ruby as admin:\\
+        {\small Email: \texttt{r.j.walters@gmail.com} / Password: \texttt{Shamrock1}}\\
+        {\small (Trotec requires a registered account --- just use Robb's)}
+    \item Go to \textbf{Designs} and import your SVG
+    \item Double-click the design to open the \textbf{Workbench}
+    \item Assign the material (e.g.\ ``HDF 6mm'')
+    \item Ruby maps red $\to$ Cut and black $\to$ Engrave automatically
+\end{enumerate}
+
+\vspace{0.5em}
+\begin{alertblock}{Important}
+If you change material settings, you must \textbf{delete the workbench}
+and re-create it. Ruby caches parameters at workbench creation time.
+\end{alertblock}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Step 3: Focus \& Align}
+\begin{enumerate}
+    \item Place your stock on the bed
+    \item \textbf{Focus the lens:}
+    \begin{itemize}
+        \item Use the physical gap tool (hangs on the machine)
+        \item Place it between the lens assembly and the material surface
+        \item Jog Z until the gap tool just fits --- this sets focus on the surface
+    \end{itemize}
+    \item \textbf{For thick cuts ($\geq$\,6\,mm):} manually raise the table $\sim$3\,mm
+        after focusing to place the focal plane at the material midplane.\\
+        {\small If the job also engraves, set the Engrave effect \textbf{ZOffset to +3\,mm}
+        (table back down) so engraving focuses on the surface, not the midplane.}
+    \item \textbf{Align the job:}
+    \begin{itemize}
+        \item Use Ruby's \emph{Prepare} screen to position the design on the bed
+        \item The red pointer shows where the head is --- use it to check corners
+    \end{itemize}
+\end{enumerate}
+
+\begin{exampleblock}{Focus matters}
+Out-of-focus cuts are wider, slower to penetrate, and produce more char.
+Always re-focus when changing materials or stock thickness.
+\end{exampleblock}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Step 4: Cut}
+\begin{enumerate}
+    \item Verify the \textbf{exhaust fan is running}
+    \item Verify the \textbf{lid is closed}
+    \item Press \textbf{Start} in Ruby (or the physical button on the machine)
+    \item \textbf{Watch the job} --- stay nearby the entire time
+    \item If you see sustained flame: press \textbf{Pause} or open the lid (kills beam)
+    \item You can \textbf{pause and resume} at any time --- useful if you need to
+        open the lid to adjust something, pull a finished part out while
+        the rest is still cutting, or blow out a flare-up
+\end{enumerate}
+
+\vspace{1em}
+\begin{block}{After the Job}
+\begin{itemize}
+    \item Let the exhaust run for 1--2 minutes to clear residual smoke
+    \item Remove your parts and clean up debris / offcuts
+    \item Wipe the bed if there's significant char residue
+\end{itemize}
+\end{block}
+\end{frame}
+
+% ---------------------------------------------------------------
+\section{Tips \& Tricks}
+
+\begin{frame}{Getting Good Results}
+\begin{itemize}
+    \item \textbf{Masking tape} on the surface reduces char marks on the face
+    \item \textbf{Inner geometry first:} Ruby cuts holes before outlines by default
+        (good --- parts don't shift mid-cut)
+    \item \textbf{Kerf:} the beam removes $\sim$0.1--0.5\,mm of material.
+        For press-fit joints, test with a kerf coupon first.
+    \item \textbf{Taper:} with midplane focus, taper is minimal
+        ($\sim$0.03\,mm difference top-to-bottom on 6\,mm HDF).
+        Without midplane focus, expect $\sim$7\textdegree{} taper.
+    \item \textbf{Speed vs.\ quality:} slower = cleaner edges but more charring.
+        Multi-pass at higher speed can reduce heat buildup.
+    \item \textbf{Test first:} always run a small test piece before committing
+        to a full sheet, especially with new materials.
+\end{itemize}
+\end{frame}
+
+% ---------------------------------------------------------------
+\section{Automation with Claude}
+
+\begin{frame}{Using Claude Code with the Laser}
+The laser can be controlled programmatically via SSH tunnels and the Ruby API.
+
+\vspace{0.5em}
+\begin{itemize}
+    \item \textbf{Claude Code} can generate SVGs, configure materials,
+        upload designs, and monitor jobs
+    \item Useful for parametric designs, test sweeps, and batch operations
+    \item The repo \texttt{trotec-tools} has the tunnel manager and Python client
+\end{itemize}
+
+\vspace{0.5em}
+\begin{block}{Getting Started}
+\begin{enumerate}
+    \item Clone: \texttt{git clone github.com/project-shamrock/trotec-tools}
+    \item Connect: \texttt{./tunnel.sh up}
+    \item Open Claude Code in the repo directory
+    \item Ask Claude to help with your design or cutting workflow
+\end{enumerate}
+\end{block}
+
+\vspace{0.5em}
+{\small Claude has context about the machine settings, API, material profiles,
+and all the lessons learned from commissioning. It can read the docs and
+pick up where previous sessions left off.}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Questions?}
+\centering
+\vspace{2em}
+{\Large Happy cutting!}
+
+\vspace{2em}
+\begin{tabular}{rl}
+\textbf{Machine} & Trotec Q400 RF, 60W CO\textsubscript{2} \\
+\textbf{Software} & Trotec Ruby (browser) \\
+\textbf{Materials} & HDF 6\,mm standard stock \\
+\textbf{Shop hours} & Cutoff at 8\,PM \\
+\textbf{Location} & Good Studio, Via Faentina 244/8, Firenze \\
+\textbf{Repo} & \texttt{project-shamrock/trotec-tools} \\
+\end{tabular}
+\end{frame}
+
+\end{document}
